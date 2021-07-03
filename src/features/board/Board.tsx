@@ -1,24 +1,35 @@
-import React from 'react'
+import React from 'react';
+import { Card, board, attack } from './boardSlice';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 type FakeCardForExampleProps = {
     cardProperties: {
         name: string
     },
     key: string
-}
-
-type BoardProps = {
-    playedCards: {name: string}[]
-}
+};
 
 function FakeCardForExample ({ cardProperties }: FakeCardForExampleProps) {
-    return <div>{ cardProperties.name }</div>
-}
+    return <div>{ cardProperties.name }</div>;
+};
 
-export function Board ({ playedCards }: BoardProps) {
+export function Board () {
+    const playerCards: Card[] = useAppSelector(board).player;
+    const opponentCards: Card[] = useAppSelector(board).opponent;
+    const dispatch = useAppDispatch();
+
     return (
-        <div>
-            { playedCards.map((card, i) => <FakeCardForExample key={`${card}${i}`} cardProperties={card} />) }
-        </div>
-    )
-}
+        <>
+            {/* Boutons pour exemple */}
+            <button onClick={() => dispatch(attack([0, 1]))}>Attack Mage</button>
+            <button onClick={() => dispatch(attack([1, 1]))}>Attack Vampire</button>
+            <div>
+                { opponentCards.map((card, i) => <FakeCardForExample key={`${card}${i}`} cardProperties={card} />) }
+            </div>
+            <hr/>
+            <div>
+                { playerCards.map((card, i) => <FakeCardForExample key={`${card}${i}`} cardProperties={card} />) }
+            </div>
+        </>
+    );
+};
