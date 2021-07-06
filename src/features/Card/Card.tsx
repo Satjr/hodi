@@ -5,8 +5,7 @@ type CardProps = {
         name: string,
         attack: number,
         health: number,
-    },
-    key: string
+    }
 };
 
 export function Card ({ cardProperties }: CardProps) {

@@ -14,8 +14,8 @@ function FakeCardForExample ({ cardProperties }: FakeCardForExampleProps) {
 };
 
 export function Board () {
-    const playerCards: Card[] = useAppSelector(board).player;
-    const opponentCards: Card[] = useAppSelector(board).opponent;
+    const playerCards: Card[] = useAppSelector(board).playerSide.cards;
+    const opponentCards: Card[] = useAppSelector(board).opponentSide.cards;
     const dispatch = useAppDispatch();
 
     return (
