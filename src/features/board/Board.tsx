@@ -1,34 +1,25 @@
 import React from 'react';
-import { Card, board, attack } from './boardSlice';
+import { board, attack } from './boardSlice';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-
-type FakeCardForExampleProps = {
-    cardProperties: {
-        name: string
-    },
-    key: string
-};
-
-function FakeCardForExample ({ cardProperties }: FakeCardForExampleProps) {
-    return <div>{ cardProperties.name }</div>;
-};
+import { CardInterface, Card } from '../card/Card';
 
 export function Board () {
-    const playerCards: Card[] = useAppSelector(board).playerSide.cards;
-    const opponentCards: Card[] = useAppSelector(board).opponentSide.cards;
+    const playerCards: CardInterface[] = useAppSelector(board).playerSide.cards;
+    const opponentCards: CardInterface[] = useAppSelector(board).opponentSide.cards;
     const dispatch = useAppDispatch();
 
     return (
         <>
-            {/* Boutons pour exemple */}
-            <button onClick={() => dispatch(attack([0, 1]))}>Attack Mage</button>
-            <button onClick={() => dispatch(attack([1, 1]))}>Attack Vampire</button>
+            <button onClick={() => dispatch(attack([0, 0]))}>Murlock Attack Mage</button>
+            <button onClick={() => dispatch(attack([0, 1]))}>Murlock attack Vampire</button>
+            <button onClick={() => dispatch(attack([1, 0]))}> Dragon attack Mage</button>
+            <button onClick={() => dispatch(attack([1, 1]))}> Dragon attack Vampire</button>
             <div>
-                { opponentCards.map((card, i) => <FakeCardForExample key={`${card}${i}`} cardProperties={card} />) }
+                { opponentCards.map((card, i) => <Card key={`${card}${i}`} cardProperties={card} />) }
             </div>
             <hr/>
             <div>
-                { playerCards.map((card, i) => <FakeCardForExample key={`${card}${i}`} cardProperties={card} />) }
+                { playerCards.map((card, i) => <Card key={`${card}${i}`} cardProperties={card} />) }
             </div>
         </>
     );
