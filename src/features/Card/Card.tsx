@@ -1,15 +1,12 @@
 import React from 'react';
 
-type CardProps = {
-    cardProperties: {
-        name: string,
-        attack: number,
-        health: number,
-    },
-    key: string
+export interface CardInterface {
+    name: string,
+    attack: number,
+    health: number,
 };
 
-export function Card ({ cardProperties }: CardProps) {
+export function Card ({ cardProperties }: {cardProperties: CardInterface}) {
     return (
         <div>
             <div>{cardProperties.name}</div>
