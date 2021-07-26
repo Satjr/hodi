@@ -15,11 +15,21 @@ export function Board () {
             <button onClick={() => dispatch(attack([1, 0]))}> Dragon attack Mage</button>
             <button onClick={() => dispatch(attack([1, 1]))}> Dragon attack Vampire</button>
             <div>
-                { opponentCards.map((card, i) => <Card key={`${card}${i}`} cardProperties={card} />) }
+                { opponentCards.map((card, i) => <Card
+                    key={`${card}${i}`}
+                    side='opponent'
+                    index={i}
+                    cardProperties={card}
+                />) }
             </div>
             <hr/>
             <div>
-                { playerCards.map((card, i) => <Card key={`${card}${i}`} cardProperties={card} />) }
+                { playerCards.map((card, i) => <Card
+                    key={`${card}${i}`}
+                    side='player'
+                    index={i}
+                    cardProperties={card}
+                />) }
             </div>
         </>
     );
