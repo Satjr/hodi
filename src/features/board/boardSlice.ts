@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
-import { CardInterface } from '../card/Card'
+import { CardInterface } from '../card/Card';
 
 type Side = {
     cards: CardInterface[]
@@ -18,7 +18,7 @@ const initialState: {playerSide: Side, opponentSide: Side} = {
             {name: 'Mage', attack: 1, health: 8},
             {name: 'Vampire', attack: 6, health: 5}
         ]
-    }
+    },
 };
 
 const BoardSlice = createSlice({
@@ -28,7 +28,7 @@ const BoardSlice = createSlice({
         attack: (state, action: PayloadAction<[number, number]>) => {
             state.playerSide.cards[action.payload[0]].health -= state.opponentSide.cards[action.payload[1]].attack
             state.opponentSide.cards[action.payload[1]].health -= state.playerSide.cards[action.payload[0]].attack
-        }
+        },
     }
 });
 
